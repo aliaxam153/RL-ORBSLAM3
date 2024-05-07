@@ -1,7 +1,7 @@
 ## Installation & Setup of Multi-model Indoor Simulator (MINOS)
 
 ```
-sudo apt-get update && upgrade
+ sudo apt-get update && sudo apt-get upgrade
 ```
 ## Installation Python Version & Dependencies:
 ```
@@ -11,7 +11,7 @@ sudo apt install python2.7
 ```
 sudo apt-get install python3-tk && sudo apt-get install build-essential libxi-dev libglu1-mesa-dev libglew-dev libopencv-dev libboost-all-dev libglib2.0-dev
 ```
-We need to install libvips separately, since if we run the ```sudo apt install libvips`` command it install libvips42 instead of libvips.
+We need to install libvips separately, since if we run the ```sudo apt install libvips``` command; it installs libvips42 instead of libvips.
 ```
 cd ~/Packages/
 wget https://github.com/libvips/libvips/releases/download/v8.5.5/vips-8.5.5.tar.gz
@@ -75,6 +75,8 @@ source ~/.bashrc
 ```
 ```
 cd ..
+sudo apt-get install libsdl2-dev
+
 pip3 install -e . -r requirements.txt
 ```
 ## Test MINOS by running matterport3d dataset
