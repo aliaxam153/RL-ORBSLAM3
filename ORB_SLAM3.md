@@ -89,7 +89,7 @@ You should see something similar to:
 ```
 Now that your environment is now setup.
 
-## 2. Install ORB-SLAM3
+## Install ORB-SLAM3
 Now, we install ORB-SLAM3. I used the commit version ef9784101fbd28506b52f233315541ef8ba7af57 tag: v0.3-beta
 ```
 cd ~/Packages
@@ -124,7 +124,7 @@ Execute build_ros.sh script:
 chmod +x build_ros.sh
 ./build_ros.sh
 ```
-## 3. Run Example on ROS
+## Run Example on ROS
 Running RGB_D Node
 For an RGB-D input from topics /camera/rgb/image_raw and /camera/depth_registered/image_raw, run node ORB_SLAM3/RGBD. You will need to provide the vocabulary file and a settings file. See the RGB-D example above.
 ```rosrun ORB_SLAM3 RGBD PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE```
