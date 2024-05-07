@@ -12,6 +12,7 @@ sudo apt-get update && sudo apt-get upgrade
 
 ## Installation of ORB-SLAM3:
 Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/aryaman-patel/orb_slam3_implementation) for the installation in Ubuntu 20.04 along with further changes added by me.
+(ORB_SLAM.md)[https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/ORB_SLAM3.md]
 Install all dependencies.
 ```
 sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
