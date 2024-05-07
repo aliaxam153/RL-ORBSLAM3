@@ -1,9 +1,9 @@
 # ORB-SLAM3-MINOS-Installation-Integration-in-WSL
-Installation of ORB-SLAM3 and MINOS simulator with ROS Melodic using Windows Subsystem for Linux (WSL)
+Installation of ORB-SLAM3 and MINOS simulator with ROS Melodic using Windows Subsystem for Linux (WSL). This has been tested for the following distros:
+- Ubuntu 18.04/ROS Melodic
+- Ubuntu 20.04/ROS Noetic
 ## 1. Prerequisites
-- Install wsl2 by following this link: [Windows Subsystem for Linux- Version 2](https://learn.microsoft.com/en-us/windows/wsl/install).
-- After installing wsl2, install the Ubuntu 20.04 Distro for wsl from the Microsoft Store. 
-- Launch the ubuntu 20.04 app, set UNIX username & password. After completing the setup the ubuntu terminal will be ready.
+Install wsl2 by following this link: [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install). After installation of wsl2, install the specific Ubuntu Distro, you want to use from the Microsoft Store. Launch the ubuntu distro e.g.20.04, set the UNIX username & password. After completing the setup the ubuntu terminal will be ready.
 
 Enter the following command:
 ```
@@ -139,14 +139,18 @@ chmod +x build_ros.sh
 ## 3. Run Example on ROS
 Running RGB_D Node
 For an RGB-D input from topics /camera/rgb/image_raw and /camera/depth_registered/image_raw, run node ORB_SLAM3/RGBD. You will need to provide the vocabulary file and a settings file. See the RGB-D example above.
-rosrun ORB_SLAM3 RGBD PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE
-Running ROS example: Download a rosbag (e.g. V1_02_medium.bag) from the EuRoC dataset (http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets). Open 3 tabs on the terminal and run the following command at each tab for a Stereo-Inertial configuration:
-- Terminal_1: roscore
-- Terminal_2: rosbag play --pause ~/MH_01_easy.bag /cam0/image_raw:=/camera/left/image_raw /cam1/image_raw:=/camera/right/image_raw /imu0:=/imu
+```rosrun ORB_SLAM3 RGBD PATH_TO_VOCABULARY PATH_TO_SETTINGS_FILE```
+
+Running ROS example: Download a rosbag (e.g. V1_02_medium.bag) from the [EuRoC dataset](http://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets) and paste in the directory ```~/```.
+
+Open 3 tabs on the terminal and run the following command at each tab for a Stereo-Inertial configuration:
+
+- Terminal_1: ```roscore```
+- Terminal_2: ``` rosbag play --pause ~/MH_01_easy.bag /cam0/image_raw:=/camera/left/image_raw /cam1/image_raw:=/camera/right/image_raw /imu0:=/imu```
 - Terminal_3:
 ```
-cd ORB_SLAM3
-rosrun ORB_SLAM3 Stereo_Inertial ~/Packages/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/Pakcages/ORB_SLAM3/Examples_old/Stereo-Inertial/EuRoC.yaml true
+cd ~/Packages/ORB_SLAM3/
+rosrun ORB_SLAM3 Stereo_Inertial ~/Packages/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/Packages/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml true
 ```
 
 
