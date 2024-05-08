@@ -6,7 +6,7 @@
 ## Installation Python Version & Dependencies:
 ```
 sudo apt install python3-pip
-sudo apt install python2.7
+sudo apt install python2.7-dev
 ```
 ```
 sudo apt-get install python3-tk && sudo apt-get install build-essential libxi-dev libglu1-mesa-dev libglew-dev libopencv-dev libboost-all-dev libglib2.0-dev libsdl2-dev
