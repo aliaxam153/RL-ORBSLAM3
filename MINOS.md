@@ -9,7 +9,7 @@ sudo apt install python3-pip
 sudo apt install python2.7
 ```
 ```
-sudo apt-get install python3-tk && sudo apt-get install build-essential libxi-dev libglu1-mesa-dev libglew-dev libopencv-dev libboost-all-dev libglib2.0-dev
+sudo apt-get install python3-tk && sudo apt-get install build-essential libxi-dev libglu1-mesa-dev libglew-dev libopencv-dev libboost-all-dev libglib2.0-dev libsdl2-dev
 ```
 We need to install libvips separately, since if we run the ```sudo apt install libvips``` command; it installs libvips42 instead of libvips.
 ```
@@ -35,6 +35,7 @@ sudo make install
 ```
 cd ~/Packages/
 git clone --branch v0.7.x https://github.com/minosworld/minos.git
+git checkout v0.7.x
 cd ~/Packages/minos/
 ```
 ```
@@ -48,13 +49,10 @@ nvm alias default 10.13.0
 ```
 cd minos/server/
 npm config set python /usr/bin/python2.7
-npm install -g node-gyp@3.8.0
-npm install -g bufferutil@^4.0.1
-npm install -g utf-8-validate@^5.0.2
 ```
 This command might take upto to a hour to complete. Be patience if it feels like its stuck.
 ```
-npm install
+npm install node-gyp@3.8.0 bufferutil@4.0.1 utf-8-validate@5.0.2
 ```
 
 ## Install Python Requirements:
@@ -67,7 +65,8 @@ cd ~/Packages/minos/
 ```
 git clone https://github.com/msavva/socketIO-client-2
 cd socketIO-client-2
-pip install -e .
+pip3 install -e .
+rm -rf socketIO_client_2_egginfo
 ```
 ```
 export PATH=$PATH:/home/aazam/.local/bin
@@ -75,8 +74,6 @@ source ~/.bashrc
 ```
 ```
 cd ..
-sudo apt-get install libsdl2-dev
-
 pip3 install -e . -r requirements.txt
 ```
 ## Test MINOS by running matterport3d dataset
