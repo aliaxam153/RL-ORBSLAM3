@@ -28,7 +28,8 @@ git checkout 3.2.0
 
 Run this command, to open ```cap_ffmpeg_impl.hpp ```
 ```
-nano ./modules/videoio/src/cap_ffmpeg_impl.hpp
+sudo apt install gedit
+gedit ./modules/videoio/src/cap_ffmpeg_impl.hpp
 ```
 Put the following at the top of header file
 ```
