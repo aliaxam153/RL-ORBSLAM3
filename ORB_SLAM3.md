@@ -32,8 +32,8 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
 ```
 mkdir ~/dev && cd ~/dev
 git clone https://github.com/opencv/opencv.git
-git checkout 3.2.0
 cd opencv
+git checkout 3.2.0
 ```
 
 Run this command, to open ```cap_ffmpeg_impl.hpp ```
@@ -50,8 +50,9 @@ and save and close the file
 
 ```
 mkdir build && cd build
+sudo apt-get install libgtk-3-dev libgstreamer1.0-dev
 cmake -D CMAKE_BUILD_TYPE=Release -D WITH_CUDA=OFF -D CMAKE_INSTALL_PREFIX=/usr/local ..
-make -j 8
+make -j 3
 sudo make install
 ```
 ### Install Pangolin
