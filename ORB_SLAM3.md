@@ -1,3 +1,5 @@
+![image](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/assets/146977640/6d014486-c34d-4673-9385-fbfff2547797)
+
 ## Installation of ORB-SLAM3:
 Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/aryaman-patel/orb_slam3_implementation) for the installation in Ubuntu 20.04 along with further changes added by me.
 Install all dependencies.
@@ -18,12 +20,12 @@ git config --global http.postBuffer 524288000
 sudo apt-get install libglew-dev libboost-all-dev libssl-dev
 sudo apt install libeigen3-dev
 ```
-### Install OpenCV 3.2.0
+### Install OpenCV 4.4.0
 ```
 mkdir ~/dev && cd ~/dev
 git clone https://github.com/opencv/opencv.git
 cd opencv
-git checkout 3.2.0
+git checkout 4.4.0
 ```
 
 Run this command, to open ```cap_ffmpeg_impl.hpp ```
@@ -46,7 +48,6 @@ make -j 3
 sudo make install
 ```
 ### Install Pangolin
-Navigate and create Dev directory: 
 ```
 cd ~/dev
 ```
@@ -72,34 +73,14 @@ sudo make install
 ```
 ### Installation of ROS Melodic
 Follow this link for installation: https://wiki.ros.org/melodic/Installation/Ubuntu
-After installing ROS melodic, we need to create a rosbuild workspace, which will be used later for ORB-SLAM3 integration with ROS.
-```
-rosws init ~/melodic_workspace /opt/ros/melodic
-nano ~/.bashrc
-```
-Add to last line in ~/.bashrc: ```source ~/melodic_workspace/setup.bash```
-```
-sudo apt-get install python-rosinstall
-```
-```
-mkdir ~/melodic_workspace/sandbox && cd ~/melodic_workspace/sandbox
-rosws set ~/melodic_workspace/sandbox
-source ~/melodic_workspace/setup.bash
-```
-To confirm that your package path has been set, echo the ROS_PACKAGE_PATH variable.
-```
-$ echo $ROS_PACKAGE_PATH
-```
-You should see something similar to:
-```
-/home/your_user_name/melodic_workspace/sandbox:/opt/ros/melodic/share
-```
+After installing ROS melodic, we need to create a catkin workspace, which will be used later for ORB-SLAM3 integration with ROS.
+
 Now that your environment is now setup.
 
 ## Install ORB-SLAM3
 Now, we install ORB-SLAM3. I used the commit version ef9784101fbd28506b52f233315541ef8ba7af57 tag: v0.3-beta
 ```
-cd ~/Packages
+cd ~/dev
 git clone https://github.com/UZ-SLAMLab/ORB_SLAM3.git
 cd ORB_SLAM3
 git checkout ef97841
@@ -125,7 +106,8 @@ and add at the end the following line. Replace PATH by the folder where you clon
 ```
 export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:PATH/ORB_SLAM3/Examples/ROS
 ```
-e.g. ```export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/home/aazam/Packages/ORB_SLAM3/Examples/ROS```
+e.g. ```export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/home/user/dev/ORB_SLAM3/Examples/ROS```
+After editing, save the file and run: ```source ~/.bashrc```
 Execute build_ros.sh script:
 ```
 chmod +x build_ros.sh
@@ -145,6 +127,6 @@ Open 3 tabs on the terminal and run the following command at each tab for a Ster
 - Terminal_3:
 ```
 cd ~/Packages/ORB_SLAM3/
-rosrun ORB_SLAM3 Stereo_Inertial ~/Packages/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/Packages/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml true
+rosrun ORB_SLAM3 Stereo_Inertial ~/dev/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/dev/ORB_SLAM3/Examples/Stereo-Inertial/EuRoC.yaml true
 ```
 
