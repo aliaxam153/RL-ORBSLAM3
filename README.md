@@ -1,7 +1,5 @@
 # ORB-SLAM3-MINOS-Installation-Integration-in-WSL
-Installation of ORB-SLAM3 and MINOS simulator with ROS Melodic using Windows Subsystem for Linux (WSL). This has been tested for the following distros:
-- Ubuntu 18.04/ROS Melodic
-- Ubuntu 20.04/ROS Noetic
+Installation of ORB-SLAM3 and MINOS simulator with ROS Noetic using Windows Subsystem for Linux (WSL). This has been tested for Ubuntu 20.04/ROS Noetic
 ## Install and setup WSL2 in Windows Machine:
 Here are the steps to install a specific Ubuntu distribution on WSL2 from the Microsoft Store:
 - **Enable WSL2:** Before you install any Linux distribution, make sure you have WSL2 enabled on your Windows machine. You can do this by following the instructions in the official Microsoft documentation ([WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)).
