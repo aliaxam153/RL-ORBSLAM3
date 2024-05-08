@@ -3,20 +3,36 @@ Following are the instruction to install ORB-SLAM3, I have referenced this [repo
 Install all dependencies.
 ```
 sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
+sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
 sudo apt update
-sudo apt-get install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev gcc-11 g++-11
 ```
 > This is only needed, if you have a slow internet connection, otherwise skip it:
 ```
 git config --global http.postBuffer 524288000
 ```
+After installing GCC 11, you can set it as the default compiler by using the update-alternatives #command:
+```
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 && sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 110
+```
+Then, you can select GCC 11 as the default compiler:
+```
+sudo update-alternatives --config gcc && sudo update-alternatives --config g++
+```
+
+After setting GCC 11 as the default compiler, you can verify the version by running:
+```
+gcc --version && g++ --version
+```
+
 ```
 sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libjasper-dev libglew-dev libboost-all-dev libssl-dev libeigen3-dev
 ```
 ### Install OpenCV 3.2.0
 ```
-mkdir ~/Packages && cd ~/Packages
-git clone --branch 3.2.0 https://github.com/opencv/opencv.git
+mkdir ~/dev && cd ~/dev
+git clone https://github.com/opencv/opencv.git
+git checkout 3.2.0
 cd opencv
 ```
 
@@ -41,7 +57,7 @@ sudo make install
 ### Install Pangolin
 Navigate and create Dev directory: 
 ```
-cd ~/Packages
+cd ~/dev
 ```
 Download Pangolin from github:
 ```
