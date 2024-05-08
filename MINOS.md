@@ -9,7 +9,7 @@ sudo apt install python3-pip
 sudo apt install python2.7-dev
 ```
 ```
-sudo apt-get install python3-tk && sudo apt-get install build-essential libxi-dev libglu1-mesa-dev libglew-dev libopencv-dev libboost-all-dev libglib2.0-dev libsdl2-dev
+sudo apt-get install python3-tk && sudo apt-get install build-essential libxi-dev libglu1-mesa-dev libglew-dev libopencv-dev libboost-all-dev libglib2.0-dev
 ```
 We need to install libvips separately, since if we run the ```sudo apt install libvips``` command; it installs libvips42 instead of libvips.
 ```
@@ -70,11 +70,16 @@ pip3 install -e .
 rm -rf socketIO_client_2.egg-info
 ```
 ```
-export PATH=$PATH:/home/aazam/.local/bin
+gedit ~/.bashrc
+```
+Paste this at the end of file: ```export PATH=$PATH:/home/user/.local/bin```
+After saving the file, run the following command to update:
+```
 source ~/.bashrc
 ```
 ```
 cd ..
+sudo apt install libsdl2-dev
 pip3 install -e . -r requirements.txt
 ```
 ## Download Matterport3D Dataset
