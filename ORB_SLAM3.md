@@ -3,30 +3,20 @@ Following are the instruction to install ORB-SLAM3, I have referenced this [repo
 Install all dependencies.
 ```
 sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
-sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
 sudo apt update
-sudo apt-get install build-essential cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev gcc-11 g++-11
+
+sudo apt-get install build-essential
+sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libjasper-dev
+
 ```
 > This is only needed, if you have a slow internet connection, otherwise skip it:
 ```
 git config --global http.postBuffer 524288000
 ```
-After installing GCC 11, you can set it as the default compiler by using the update-alternatives #command:
 ```
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 && sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 110
-```
-Then, you can select GCC 11 as the default compiler:
-```
-sudo update-alternatives --config gcc && sudo update-alternatives --config g++
-```
-
-After setting GCC 11 as the default compiler, you can verify the version by running:
-```
-gcc --version && g++ --version
-```
-
-```
-sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libjasper-dev libglew-dev libboost-all-dev libssl-dev libeigen3-dev
+sudo apt-get install libglew-dev libboost-all-dev libssl-dev
+sudo apt install libeigen3-dev
 ```
 ### Install OpenCV 3.2.0
 ```
@@ -50,7 +40,6 @@ and save and close the file
 
 ```
 mkdir build && cd build
-sudo apt-get install libgtk-3-dev libgstreamer1.0-dev
 cmake -D CMAKE_BUILD_TYPE=Release -D WITH_CUDA=OFF -D CMAKE_INSTALL_PREFIX=/usr/local ..
 make -j 3
 sudo make install
