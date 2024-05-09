@@ -24,6 +24,9 @@ sudo apt-get install build-essential
 sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev ninja-build
 
 sudo apt-get install libboost-all-dev libboost-dev libssl-dev libpython2.7-dev libglew-dev python3-pip python2.7-dev
+
+git config --global http.postBuffer 524288000
+
 ```
 Tool for editing scripts:
 ```
