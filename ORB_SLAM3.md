@@ -1,6 +1,6 @@
 ![image](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/assets/146977640/6d014486-c34d-4673-9385-fbfff2547797)
 
-## Installation of ORB-SLAM3:
+## Installation of ORB-SLAM3
 Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/aryaman-patel/orb_slam3_implementation) for the installation in Ubuntu 18.04 along with further changes added by me.
 Install all dependencies.
 ```
