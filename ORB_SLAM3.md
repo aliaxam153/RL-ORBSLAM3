@@ -81,9 +81,8 @@ Now that your environment is now setup.
 Now, we install ORB-SLAM3. I used the commit version ef9784101fbd28506b52f233315541ef8ba7af57 tag: v0.3-beta
 ```
 cd ~/dev
-git clone https://github.com/UZ-SLAMLab/ORB_SLAM3.git
+git clone https://github.com/UZ-SLAMLab/ORB_SLAM3.git ORB_SLAM3
 cd ORB_SLAM3
-git checkout ef97841
 ```
 We need to change the header file ```gedit ./include/LoopClosing.h``` at line 51 from
 ```Eigen::aligned_allocator<std::pair<const KeyFrame*, g2o::Sim3> > > KeyFrameAndPose;```
@@ -98,6 +97,10 @@ Now Simply just run (if you encounter compiler, try to run the this shell script
 ./build.sh
 ```
 ### Integrate with  ORB_SLAM3 ROS
+Ubuntu 20.04 has dropped python and python2, and now using python 3. Install the following lib to run ROS on Ubuntu 20.04: 
+```
+sudo apt install python-is-python3
+```
 Add the path including Examples/ROS/ORB_SLAM3 to the ROS_PACKAGE_PATH environment variable. Open .bashrc file:
 ```
 gedit ~/.bashrc
