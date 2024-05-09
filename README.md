@@ -13,6 +13,10 @@ Here are the steps to install a specific Ubuntu distribution on WSL2 from the Mi
   ```
   sudo apt-get update && sudo apt-get upgrade
   ```
+  After completion of ubuntu update, reboot it.
+  ```
+  sudo reboot
+  ```
 
 ## Installation of ORB-SLAM3:
 Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/aryaman-patel/orb_slam3_implementation) for the installation in Ubuntu 20.04 along with further changes added by me.
