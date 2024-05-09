@@ -19,3 +19,7 @@ Following are the instruction to install ORB-SLAM3, I have referenced this [repo
 
 > For installation procedure & ROS setup of ORB-SLAM3 refer to this link: 
 [ORB_SLAM.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/ORB_SLAM3.md)
+
+## Installation of MINOS:
+> For installation procedure, refer to this link: 
+[MINOS.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/MINOS.md)
