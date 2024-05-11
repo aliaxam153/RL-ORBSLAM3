@@ -56,3 +56,5 @@ Please note that you need to have `git` and `cmake` installed on your system to 
 ```
 sudo ./scripts/install_prerequisites.sh recommended
 ```
+
+cmake --build build -t pypangolin_wheel
