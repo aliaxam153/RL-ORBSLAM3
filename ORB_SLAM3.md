@@ -1,25 +1,8 @@
 ![image](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/assets/146977640/6d014486-c34d-4673-9385-fbfff2547797)
 
 ## Installation of ORB-SLAM3:
-Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/aryaman-patel/orb_slam3_implementation) for the installation in Ubuntu 18.04 along with further changes added by me.
-Install all dependencies.
-```
-sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
-sudo apt update
+Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/UZ-SLAMLab/ORB_SLAM3/tree/master) for the installation in Ubuntu 20.04 along with further changes added by me.
 
-sudo apt-get install build-essential
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev libjasper-dev
-
-```
-> This is only needed, if you have a slow internet connection, otherwise skip it:
-```
-git config --global http.postBuffer 524288000
-```
-```
-sudo apt-get install libglew-dev libboost-all-dev libssl-dev
-sudo apt install libeigen3-dev
-```
 ### Install OpenCV 4.4.0
 ```
 mkdir ~/dev && cd ~/dev
