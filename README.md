@@ -22,6 +22,9 @@ Tool for editing scripts:
 sudo apt install gedit
 
 ```
+> We require C++11 compiler to build some dependencies. So, refer to this link to install the compiler: 
+[C++11_Compiler.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/C++11_Compiler.md)
+> 
 ## Installation of ORB-SLAM3:
 Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/aryaman-patel/orb_slam3_implementation) for the installation in Ubuntu 20.04 along with further changes added by me.
 
