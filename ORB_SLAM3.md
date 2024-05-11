@@ -3,10 +3,11 @@
 ## Installation of ORB-SLAM3:
 Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/UZ-SLAMLab/ORB_SLAM3/tree/master) for the installation in Ubuntu 20.04 along with further changes added by me.
 ### Install Pangolin
-> For installation procedure of OpenCV refer to this link: 
+> For installation procedure of Pangolin refer to this link: 
 [Pangolin.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/Pangolin.md)
 
 ### Install OpenCV 4.4.0
+
 > For installation procedure of OpenCV refer to this link: 
 [OpenCV.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/OpenCV.md)
 
@@ -17,10 +18,9 @@ After installing ROS melodic, we need to create a catkin workspace, which will b
 Now that your environment is now setup.
 
 ## Install ORB-SLAM3
-Now, we install ORB-SLAM3. I used the commit version ef9784101fbd28506b52f233315541ef8ba7af57 tag: v0.3-beta
+Now, we install ORB-SLAM3. Use the ORB_SLAM3 file given in the repository, it is a modded version which works with ROS Noetic
 ```
 cd ~/dev
-git clone https://github.com/UZ-SLAMLab/ORB_SLAM3.git ORB_SLAM3
 cd ORB_SLAM3
 ```
 Now Simply just run (if you encounter compiler, try to run the this shell script 2 or 3 more time. It works for me.)
