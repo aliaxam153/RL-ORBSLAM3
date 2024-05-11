@@ -2,63 +2,18 @@
 
 ## Installation of ORB-SLAM3:
 Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/UZ-SLAMLab/ORB_SLAM3/tree/master) for the installation in Ubuntu 20.04 along with further changes added by me.
+### Install Pangolin
+> For installation procedure of OpenCV refer to this link: 
+[Pangolin.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/Pangolin.md)
 
 ### Install OpenCV 4.4.0
-OpenCV.md
-```
-mkdir ~/dev && cd ~/dev
-git clone https://github.com/opencv/opencv.git
-cd opencv
-git checkout 4.4.0
-```
+> For installation procedure of OpenCV refer to this link: 
+[OpenCV.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/OpenCV.md)
 
-Run this command, to open ```cap_ffmpeg_impl.hpp ```
-```
-sudo apt install gedit
-gedit ./modules/videoio/src/cap_ffmpeg_impl.hpp
-```
-Put the following at the top of header file
-```
-#define AV_CODEC_FLAG_GLOBAL_HEADER (1 << 22)
-#define CODEC_FLAG_GLOBAL_HEADER AV_CODEC_FLAG_GLOBAL_HEADER
-#define AVFMT_RAWPICTURE 0x0020
-```
-and save and close the file
-
-```
-mkdir build && cd build
-cmake -D CMAKE_BUILD_TYPE=Release -D WITH_CUDA=OFF -D CMAKE_INSTALL_PREFIX=/usr/local ..
-make -j 3
-sudo make install
-```
-### Install Pangolin
-```
-cd ~/dev
-```
-Download Pangolin from github:
-```
-git clone https://github.com/stevenlovegrove/Pangolin.git
-```
-Checkout the git verion 86eb4975fc4fc8b5d92148c2e370045ae9bf9f5d:
-```
-cd Pangolin
-git checkout 86eb4975
-```
-Install dependencies:
-```
-sudo apt-get install libgl1-mesa-dev libglew-dev doxygen graphviz
-```
-Build & Install:
-```
-mkdir build && cd build
-cmake -D CMAKE_BUILD_TYPE=Release ..
-make -j 8 
-sudo make install
-```
-### Installation of ROS Melodic
-Follow this link for installation: https://wiki.ros.org/melodic/Installation/Ubuntu
+### Installation of ROS Noetic
+Follow this link for installation: [ROS-Noetic-TwoLineInstall](https://wiki.ros.org/ROS/Installation/TwoLineInstall/)
 After installing ROS melodic, we need to create a catkin workspace, which will be used later for ORB-SLAM3 integration with ROS.
-
+[Catkin Workspace](https://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment)
 Now that your environment is now setup.
 
 ## Install ORB-SLAM3
@@ -68,23 +23,12 @@ cd ~/dev
 git clone https://github.com/UZ-SLAMLab/ORB_SLAM3.git ORB_SLAM3
 cd ORB_SLAM3
 ```
-We need to change the header file ```gedit ./include/LoopClosing.h``` at line 51 from
-```Eigen::aligned_allocator<std::pair<const KeyFrame*, g2o::Sim3> > > KeyFrameAndPose;```
-to
-```
-Eigen::aligned_allocator<std::pair<KeyFrame *const, g2o::Sim3> > > KeyFrameAndPose;
-```
-in order to make this comiple. Now, we can comiple ORB-SLAM3 and it dependencies as DBoW2 and g2o.
-
 Now Simply just run (if you encounter compiler, try to run the this shell script 2 or 3 more time. It works for me.)
 ```
+chmod +x build.sh
 ./build.sh
 ```
 ### Integrate with  ORB_SLAM3 ROS
-Ubuntu 20.04 has dropped python and python2, and now using python 3. Install the following lib to run ROS on Ubuntu 20.04: 
-```
-sudo apt install python-is-python3
-```
 Add the path including Examples/ROS/ORB_SLAM3 to the ROS_PACKAGE_PATH environment variable. Open .bashrc file:
 ```
 gedit ~/.bashrc
