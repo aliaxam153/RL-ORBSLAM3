@@ -30,19 +30,32 @@ Replace ‘11’ with whichever version number you need.
 dpkg --list | grep compiler
 ```
 
-**d) Switch Between G++ Compiler Versions:** You can switch between the versions using the following command.
+**d) Add the Default G++ to Alternatives:** First, add the default version of G++ to the alternatives system.
+```
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 20
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 20
+```
+Here, ‘g++-9’ is the default version, and ‘20’ is its priority. Adjust the version and priority according to your needs.
+
+Add Other Versions: Add any other installed versions.
+```
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 50
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 50
+```
+This command adds G++ 11 to alternatives and sets it as a higher priority, making it the default version.
+
+**e) Switch Between G++ & GCC Compiler Versions:** You can switch between the versions using the following command.
 ```
 sudo update-alternatives --config g++
 ```
 This will prompt you to select which version of G++ you wish to be the default by typing the selection number.
-> We use the default compiler:
-> ``
-> g++-9/focal-updates,focal-security,now 9.4.0-1ubuntu1~20.04.2 amd64 [installed,automatic]
-> GNU C++ compiler
-> ``
-
-**e) Verify Installation:** Ensure the specified version of G++ is correctly installed.
+Similarly, we use the following command for GCC:
 ```
-g++ --version
+sudo update-alternatives --config gcc
+```
+
+**f) Verify Installation:** Ensure the specified version of G++ is correctly installed.
+```
+g++ --version && gcc --version
 ```
 This command checks which version is currently active.
