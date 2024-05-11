@@ -7,7 +7,13 @@ Following are the instruction to install ORB-SLAM3, I have referenced this [repo
 [Pangolin.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/Pangolin.md)
 
 ### Install OpenCV 4.4.0
+You must switch from default g++ & gcc version 11 the version 9 using the following command.
+```sudo update-alternatives --config g++```
+This will prompt you to select which version of G++ you wish to be the default by typing the selection number. Select g++-9 by pressing 2.
 
+Similarly, we use the following command for GCC:
+```sudo update-alternatives --config gcc```
+Select gcc-9 by pressing 2 in prompt.
 > For installation procedure of OpenCV refer to this link: 
 [OpenCV.md](https://github.com/aliaxam153/ORB-SLAM3-MINOS-Installation-Integration-in-WSL/blob/main/OpenCV.md)
 
