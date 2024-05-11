@@ -29,6 +29,7 @@ Now, we install ORB-SLAM3. Use the ORB_SLAM3 file given in the repository, it is
 cd ~/dev
 cd ORB_SLAM3
 ```
+Before installation change compiler back to default C++11 compiler.
 Now Simply just run (if you encounter compiler, try to run the this shell script 2 or 3 more time. It works for me.)
 ```
 chmod +x build.sh
