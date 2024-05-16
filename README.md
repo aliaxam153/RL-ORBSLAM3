@@ -144,7 +144,9 @@ echo "Starting ROSCORE"
 roscore &
 sleep 2
 echo "Started ROSCORE"
-cd /home/user_name/dev/minos             #Following command runs MINOS
+
+#Following command runs MINOS
+cd /home/user_name/dev/minos
 python3 -m minos.tools.pygame_client --dataset mp3d --scene_ids JeFG25nYj2p --env_config pointgoal_mp3d_s --save_png --width 600 --height 400 --agent_config agent_gridworld -s map --navmap &
 cd /home/user_name/ORB_SLAM3
 
