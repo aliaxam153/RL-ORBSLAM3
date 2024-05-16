@@ -1,3 +1,5 @@
+![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/36985e28-ca95-4dbd-9fdd-ffb67b606691)
+
 # ORB-SLAM3 & MINOS Installation, Integration with ROS Noetic on WSL 
 Installation of ORB-SLAM3 and MINOS simulator with ROS Noetic using Windows Subsystem for Linux (WSL). This has been tested for Ubuntu 20.04 Distro.
 ## Install and setup WSL2 in Windows Machine:
