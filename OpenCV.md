@@ -36,7 +36,7 @@ mkdir build && cd build
 
 ```bash
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \ ..
 ```
 
 6. **Build and install OpenCV**: You can do this with the following commands¹:
