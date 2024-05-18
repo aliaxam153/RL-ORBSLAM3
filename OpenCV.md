@@ -21,7 +21,7 @@ sudo apt install build-essential cmake git pkg-config libgtk-3-dev \
 3. **Download and unpack the OpenCV sources**: You can download the OpenCV 4.4.0 sources from the official OpenCV GitHub repository¹:
 
 ```bash
-git clone git clone https://github.com/opencv/opencv.git
+git clone https://github.com/opencv/opencv.git
 cd opencv
 git checkout 4.4.0
 ```
