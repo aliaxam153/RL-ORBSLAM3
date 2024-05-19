@@ -158,6 +158,18 @@ rosrun ORB_SLAM3 Mono ~/dev/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/dev/ORB_SLAM3/Exam
 sleep 5
 rosrun merger merger
 ```
+## DQNorb.py Integration with ORB-SLAM3
+
+In the folder  ```/Data/DQNorb```, the file DQNorb.py is the executeable that links with the ORB-SLAM3 ROS publisher and subscriber. The ```agent.pt``` is the pre-trained DQN model, which is trained on
+MINOS simulator. Following rqt_graph shows the ROS network:
+
+![rosgraph1](https://github.com/aliaxam153/ORB-SLAM3-MINOS-on-Ubuntu-20.04-WSL/assets/146977640/19d1d1d1-b29e-40b1-9d7c-30ea1a16eef9)
+
+To run the DQN model, first run the bash file that starts MINOS & ORB-SLAM3. Then open a new terminal in ubuntu run the following commands:
+```
+cd ~/dev/Data/
+python3 DQNorb.py --mode dqn_test
+```
 
 
 
