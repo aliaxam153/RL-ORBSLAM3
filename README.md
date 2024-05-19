@@ -1,7 +1,23 @@
 ![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/36985e28-ca95-4dbd-9fdd-ffb67b606691)
 
 # ORB-SLAM3 & MINOS Installation, Integration with ROS Noetic on WSL 
+> ### Disclaimer:
+>
+> The code and materials provided in this repository are not owned by me. They are sourced from various external contributors, publicly available resources, or other repositories. All credit for the original
+> work goes to the respective authors and contributors. I do not claim any ownership or rights over the code and materials within this repository.
+> If you are the rightful owner of any content and wish to have it removed or properly attributed, please contact me, and I will address your concerns promptly.
+
+> ### External Sources:
+> 
+> MINOS: https://github.com/minosworld/minos/
+>
+> ORB-SLAM3: https://github.com/UZ-SLAMLab/ORB_SLAM3/
+>
+> DQNorb: https://github.com/knaveed20/Deep-Introspective-SLAM/
+
+
 Installation of ORB-SLAM3 and MINOS simulator with ROS Noetic using Windows Subsystem for Linux (WSL). This has been tested for Ubuntu 20.04 Distro.
+
 ## Install and setup WSL2 in Windows Machine:
 Here are the steps to install a specific Ubuntu distribution on WSL2 from the Microsoft Store:
 - **Enable WSL2:** Before you install any Linux distribution, make sure you have WSL2 enabled on your Windows machine. You can do this by following the instructions in the official Microsoft documentation ([WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)).
