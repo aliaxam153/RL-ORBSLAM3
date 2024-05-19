@@ -30,7 +30,19 @@ find_package(Eigen3 3.1.0 REQUIRED)
 find_package(Pangolin REQUIRED)
 find_package(realsense2)
 
+## Find catkin macros and libraries
+find_package(catkin REQUIRED COMPONENTS
+  cv_bridge
+  image_transport
+  roscpp
+  rospy
+  std_msgs
+)
+
+
+
 include_directories(
+${catkin_INCLUDE_DIRS}
 ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
 ${PROJECT_SOURCE_DIR}/include/CameraModels
@@ -105,6 +117,7 @@ add_subdirectory(Thirdparty/g2o)
 
 target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS}
+${catkin_LIBRARIES}
 ${EIGEN3_LIBS}
 ${Pangolin_LIBRARIES}
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.so
@@ -112,6 +125,8 @@ ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 -lboost_serialization
 -lcrypto
 )
+
+
 
 # If RealSense SDK is found the library is added and its examples compiled
 if(realsense2_FOUND)

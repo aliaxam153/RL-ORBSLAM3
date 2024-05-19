@@ -32,6 +32,11 @@ FrameDrawer::FrameDrawer(Atlas* pAtlas):both(false),mpAtlas(pAtlas)
     mState=Tracking::SYSTEM_NOT_READY;
     mIm = cv::Mat(480,640,CV_8UC3, cv::Scalar(0,0,0));
     mImRight = cv::Mat(480,640,CV_8UC3, cv::Scalar(0,0,0));
+
+    PublishState();
+    PublishEpisode();
+    CalculateReward();
+    n3d=0;
 }
 
 cv::Mat FrameDrawer::DrawFrame(float imageScale)
@@ -326,7 +331,32 @@ cv::Mat FrameDrawer::DrawRightFrame(float imageScale)
     return imWithInfo;
 }
 
+//added functions
+void FrameDrawer::CalculateReward()
+{
+    float w3d = 0.025;
+    float wphai = -10;  
+    float reward = w3d * n3d;
+    if(mState != Tracking::OK)
+        reward += wphai;
+    reward -= 10;
+}
 
+void FrameDrawer::PublishState() {
+    float imageScale = 1.0f; // Initialize imageScale with some value
+    orbslam_state = DrawFrame(imageScale);
+
+}
+
+void FrameDrawer::PublishEpisode()
+{
+    if (mState == Tracking::OK)
+        episodeState = "running";
+    else if (mState == Tracking::LOST)
+        episodeState = "lost";
+    else
+        episodeState = "initializing";
+}
 
 void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
 {
@@ -344,7 +374,7 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
         int nMaps = mpAtlas->CountMaps();
         int nKFs = mpAtlas->KeyFramesInMap();
         int nMPs = mpAtlas->MapPointsInMap();
-        s << "Maps: " << nMaps << ", KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked;
+        s << "Maps: " << nMaps << ", KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked, "n3d: " << n3d;
         if(mnTrackedVO>0)
             s << ", + VO matches: " << mnTrackedVO;
     }
@@ -374,6 +404,17 @@ void FrameDrawer::Update(Tracking *pTracker)
     mvCurrentKeys=pTracker->mCurrentFrame.mvKeys;
     mThDepth = pTracker->mCurrentFrame.mThDepth;
     mvCurrentDepth = pTracker->mCurrentFrame.mvDepth;
+    
+    mvpPrevMatchedMapPoints = mvpMatchedMapPoints;
+    mvpMatchedMapPoints=pTracker->mCurrentFrame.mvpMapPoints;
+
+    n3d = 0;
+    for(int i = 0; i < mvpMatchedMapPoints.size(); i++)
+        for(int j = 0; j < mvpPrevMatchedMapPoints.size(); j++)
+            if(mvpMatchedMapPoints[i] != NULL && (mvpMatchedMapPoints[i] == mvpPrevMatchedMapPoints[j]))
+                n3d++;
+    if(n3d > 400)
+        n3d = 400;
 
     if(both){
         mvCurrentKeysRight = pTracker->mCurrentFrame.mvKeysRight;

@@ -197,6 +197,11 @@ private:
     void SaveAtlas(int type);
     bool LoadAtlas(int type);
 
+    // Public getter methods for encapsulated members
+public:
+    Tracking* GetTracker() const { return mpTracker; }
+    FrameDrawer* GetFrameDrawer() const { return mpFrameDrawer; }
+
     string CalculateCheckSum(string filename, int type);
 
     // Input sensor

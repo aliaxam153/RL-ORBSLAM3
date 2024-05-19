@@ -24,6 +24,8 @@
 #include "MapPoint.h"
 #include "Atlas.h"
 
+#include <string>
+
 #include<opencv2/core/core.hpp>
 #include<opencv2/features2d/features2d.hpp>
 
@@ -40,6 +42,9 @@ class Viewer;
 class FrameDrawer
 {
 public:
+    void CalculateReward();
+    void PublishEpisode();
+    void PublishState();
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
     FrameDrawer(Atlas* pAtlas);
 
@@ -52,6 +57,10 @@ public:
 
     bool both;
 
+    float reward;
+    std::string episodeState;
+    float n3d;
+    cv::Mat orbslam_state;
 protected:
 
     void DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText);
@@ -68,6 +77,8 @@ protected:
     int mState;
     std::vector<float> mvCurrentDepth;
     float mThDepth;
+    std::vector<MapPoint*> mvpMatchedMapPoints;
+    std::vector<MapPoint*> mvpPrevMatchedMapPoints;
 
     Atlas* mpAtlas;
 
@@ -89,3 +100,4 @@ protected:
 } //namespace ORB_SLAM
 
 #endif // FRAMEDRAWER_H
+

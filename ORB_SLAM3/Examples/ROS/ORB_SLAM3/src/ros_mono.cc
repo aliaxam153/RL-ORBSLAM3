@@ -21,28 +21,54 @@
 #include<algorithm>
 #include<fstream>
 #include<chrono>
+#include "std_msgs/Float32.h"
+#include "std_msgs/String.h"
 
 #include<ros/ros.h>
 #include <cv_bridge/cv_bridge.h>
-
-#include<opencv2/core/core.hpp>
+#include <message_filters/subscriber.h>
+#include <message_filters/time_synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
+#include <opencv2/core/core.hpp>
+#include <string>
+#include <cstdlib>
+#include <cstdio>
 
 #include"../../../include/System.h"
 
 using namespace std;
 
-class ImageGrabber
+
+    class ImageGrabber
 {
 public:
-    ImageGrabber(ORB_SLAM3::System* pSLAM):mpSLAM(pSLAM){}
+
+    ros::Publisher pub;
+    ros::Publisher reward_pub;
+    ros::Publisher episode_pub;
+
+    ImageGrabber(ORB_SLAM3::System* pSLAM, ros::Publisher pub, ros::Publisher reward_pub, ros::Publisher episode_pub) {
+            this->mpSLAM = pSLAM;
+            this->pub = pub;
+            this->reward_pub = reward_pub;
+            this->episode_pub = episode_pub;
+        }
 
     void GrabImage(const sensor_msgs::ImageConstPtr& msg);
 
+    void RespondAgent(const std_msgs::String msg);
+
     ORB_SLAM3::System* mpSLAM;
 };
+    
+
+
+
+
 
 int main(int argc, char **argv)
 {
+    std::cout << "I copied\n";
     ros::init(argc, argv, "Mono");
     ros::start();
 
@@ -55,12 +81,20 @@ int main(int argc, char **argv)
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::MONOCULAR,true);
-
-    ImageGrabber igb(&SLAM);
-
     ros::NodeHandle nodeHandler;
-    ros::Subscriber sub = nodeHandler.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,&igb);
 
+    ros::Publisher pub = nodeHandler.advertise<sensor_msgs::Image>("ORB_SLAM3/State",10,true);
+    ros::Publisher reward_pub = nodeHandler.advertise<std_msgs::Float32>("ORB_SLAM3/Reward",10,true);
+    ros::Publisher state_pub = nodeHandler.advertise<std_msgs::String>("ORB_SLAM3/Episode",10,true);
+
+    ImageGrabber igb(&SLAM, pub, reward_pub, state_pub);
+
+    ros::Subscriber sub = nodeHandler.subscribe("/camera/image_raw", 1, &ImageGrabber::GrabImage,&igb);
+    ros::Subscriber agentsub = nodeHandler.subscribe("/ORB_SLAM3/AGENT_SLAM", 1, &ImageGrabber::RespondAgent, &igb);
+
+
+    std::cout << "I saved\n";
+    
     ros::spin();
 
     // Stop all threads
@@ -74,6 +108,10 @@ int main(int argc, char **argv)
     return 0;
 }
 
+void ImageGrabber::RespondAgent(const std_msgs::String msg){
+    mpSLAM->GetTracker()->Reset(1);
+}
+
 void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
 {
     // Copy the ros image message to cv::Mat.
@@ -81,6 +119,11 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
     try
     {
         cv_ptr = cv_bridge::toCvShare(msg);
+        if(cv_ptr != 0)
+    {
+        std::cout << "This happened\n";
+    } 
+        
     }
     catch (cv_bridge::Exception& e)
     {
@@ -88,7 +131,34 @@ void ImageGrabber::GrabImage(const sensor_msgs::ImageConstPtr& msg)
         return;
     }
 
-    mpSLAM->TrackMonocular(cv_ptr->image,cv_ptr->header.stamp.toSec());
-}
 
+    mpSLAM->TrackMonocular(cv_ptr->image,cv_ptr->header.stamp.toSec());
+    mpSLAM->GetFrameDrawer()->PublishState();
+    cv::Mat stateImg = mpSLAM->GetFrameDrawer()->orbslam_state;
+    cout << "starting calculating reward" << endl; 
+    mpSLAM->GetFrameDrawer()->CalculateReward();
+    cout << "starting calculating episode" << endl;
+    mpSLAM->GetFrameDrawer()->PublishEpisode();
+
+    cout << "calculated reward" << endl;
+
+    float reward = mpSLAM->GetFrameDrawer()->reward;
+    std_msgs::Float32 reward_msg;
+    reward_msg.data = reward;
+
+    std::string episode = mpSLAM->GetFrameDrawer()->episodeState;
+    std_msgs::String episode_msg;
+    episode_msg.data = episode;
+
+    cout << "got episode information";
+    
+    cv_bridge::CvImage rosImage;
+    rosImage.image = stateImg.clone();
+    rosImage.header.stamp = ros::Time::now();
+    rosImage.encoding = "bgr8";
+
+    pub.publish(rosImage.toImageMsg());
+    reward_pub.publish(reward_msg);
+    episode_pub.publish(episode_msg);
+}
 

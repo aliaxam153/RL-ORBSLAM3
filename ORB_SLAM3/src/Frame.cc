@@ -737,10 +737,32 @@ bool Frame::PosInGrid(const cv::KeyPoint &kp, int &posX, int &posY)
 
 void Frame::ComputeBoW()
 {
+    stringstream ss;stringstream ss1;
     if(mBowVec.empty())
     {
         vector<cv::Mat> vCurrentDesc = Converter::toDescriptorVector(mDescriptors);
         mpORBvocabulary->transform(vCurrentDesc,mBowVec,mFeatVec,4);
+        //To write image when track is lost
+
+        //cout<<"\nAgent is stopped due to track loss, \nAwaiting recovery data from Algorithm , Frame Id : " <<mnId<<endl;
+        cout<<"\nAgent is stopped due to track loss, \nFrame Id : " <<mnId<<endl;
+        ss<<"Ignore.jpg";
+        cv::imwrite(ss.str(),im);
+
+        // if (mnId%1==0)
+       //{
+
+        myfile.open ("/home/aazam/abc.txt");//, std::ofstream::out | std::ofstream::app); //erase after .txt"
+        myfile << "Track is lost";
+        myfile.close();
+
+       //}
+        ss1<<"TrackLost.jpg";cv::imwrite(ss1.str(),im);
+       /*if (mnId%10==0)
+       {
+       ss1<<"TrackLost.jpg";cv::imwrite(ss1.str(),im);
+        }*/
+
     }
 }
 
