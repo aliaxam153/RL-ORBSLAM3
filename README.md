@@ -154,12 +154,8 @@ cd /home/user_name/ORB_SLAM3
 sleep 5
 export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/home/user_name
 #LAUNCH ORBSLAM3
-rosrun ORB_SLAM3 Mono ~/dev/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/dev/ORB_SLAM3/Examples/ROS/ORB_SLAM3/Minos.yaml
+rosrun ORB_SLAM3 Mono ~/dev/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/dev/ORB_SLAM3/Examples/ROS/ORB_SLAM3/Minos.yaml &
 sleep 5
-
-#Following command runs the integration algorithm after a 10 second delay
-cd /home/user_name/catkin_ws
-source devel/setup.bash
 rosrun merger merger
 ```
 
