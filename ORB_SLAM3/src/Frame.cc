@@ -26,6 +26,7 @@
 #include "ORBmatcher.h"
 #include "GeometricCamera.h"
 
+#include <fstream>
 #include <thread>
 #include <include/CameraModels/Pinhole.h>
 #include <include/CameraModels/KannalaBrandt8.h>
@@ -742,26 +743,57 @@ void Frame::ComputeBoW()
     {
         vector<cv::Mat> vCurrentDesc = Converter::toDescriptorVector(mDescriptors);
         mpORBvocabulary->transform(vCurrentDesc,mBowVec,mFeatVec,4);
-        //To write image when track is lost
 
-        //cout<<"\nAgent is stopped due to track loss, \nAwaiting recovery data from Algorithm , Frame Id : " <<mnId<<endl;
-        cout<<"\nAgent is stopped due to track loss, \nFrame Id : " <<mnId<<endl;
-        ss<<"Ignore.jpg";
-        cv::imwrite(ss.str(),im);
+        // To write image when track is lost
+        std::cout << "\nAgent is stopped due to track loss, \nFrame Id : " << mnId << std::endl;
 
-        // if (mnId%1==0)
-       //{
+        ss << "Ignore.jpg";
 
-        myfile.open ("/home/aazam/abc.txt");//, std::ofstream::out | std::ofstream::app); //erase after .txt"
-        myfile << "Track is lost";
-        myfile.close();
+        // Assuming im is a cv::Mat, you need to initialize it before use
+        cv::Mat im; // Declare the im object
+        // Load or initialize im here, e.g., im = someFunctionToLoadImage();
 
-       //}
-        ss1<<"TrackLost.jpg";cv::imwrite(ss1.str(),im);
-       /*if (mnId%10==0)
-       {
-       ss1<<"TrackLost.jpg";cv::imwrite(ss1.str(),im);
-        }*/
+        // For example, initialize im with an empty image for now
+        im = cv::Mat::zeros(480, 640, CV_8UC3); // An example of creating a blank image
+
+        cv::imwrite(ss.str(), im);
+
+        std::ofstream myfile; // Declare myfile
+        myfile.open("/home/aazam/abc.txt");
+
+        if (myfile.is_open())
+        {
+            myfile << "Track is lost";
+            myfile.close();
+        }
+        else
+        {
+            std::cerr << "Unable to open file" << std::endl;
+        }
+
+        ss1 << "TrackLost.jpg";
+        cv::imwrite(ss1.str(), im);
+
+    //     //To write image when track is lost
+
+    //     //cout<<"\nAgent is stopped due to track loss, \nAwaiting recovery data from Algorithm , Frame Id : " <<mnId<<endl;
+    //     cout<<"\nAgent is stopped due to track loss, \nFrame Id : " <<mnId<<endl;
+    //     ss<<"Ignore.jpg";
+    //     cv::imwrite(ss.str(),im);
+
+    //     // if (mnId%1==0)
+    //    //{
+
+    //     myfile.open ("/home/aazam/abc.txt");//, std::ofstream::out | std::ofstream::app); //erase after .txt"
+    //     myfile << "Track is lost";
+    //     myfile.close();
+
+    //    //}
+    //     ss1<<"TrackLost.jpg";cv::imwrite(ss1.str(),im);
+    //    /*if (mnId%10==0)
+    //    {
+    //    ss1<<"TrackLost.jpg";cv::imwrite(ss1.str(),im);
+    //     }*/
 
     }
 }

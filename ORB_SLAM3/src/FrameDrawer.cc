@@ -36,6 +36,8 @@ FrameDrawer::FrameDrawer(Atlas* pAtlas):both(false),mpAtlas(pAtlas)
     PublishState();
     PublishEpisode();
     CalculateReward();
+    episodeState = "initializing";
+    reward=0;
     n3d=0;
 }
 
@@ -374,7 +376,7 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
         int nMaps = mpAtlas->CountMaps();
         int nKFs = mpAtlas->KeyFramesInMap();
         int nMPs = mpAtlas->MapPointsInMap();
-        s << "Maps: " << nMaps << ", KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked, "n3d: " << n3d;
+        s << "Maps: " << nMaps << ", KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked <<", n3d: " << static_cast<int>(n3d);
         if(mnTrackedVO>0)
             s << ", + VO matches: " << mnTrackedVO;
     }
