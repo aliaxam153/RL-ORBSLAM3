@@ -41,8 +41,6 @@ sudo apt install gedit
 
 ```
 ## Installation of ORB-SLAM3:
-Following are the instruction to install ORB-SLAM3, I have referenced this [repo](https://github.com/aryaman-patel/orb_slam3_implementation) for the installation in Ubuntu 20.04 along with further changes added by me.
-
 > For installation procedure & ROS setup of ORB-SLAM3 refer to this link: https://github.com/aliaxam153/ORBSLAM3-WSL.git
 
 ## Installation of MINOS:
