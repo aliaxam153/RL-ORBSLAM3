@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -Wall   -O3 -O3 -DNDEBUG -march=native  -shared -Wl,-soname,libgmock_main.so -o ../lib/libgmock_main.so CMakeFiles/gmock_main.dir/src/gmock_main.cc.o  -Wl,-rpath,/home/aazam/dev/ORB_SLAM3/build/gtest/lib ../lib/libgmock.so ../lib/libgtest.so -lpthread 

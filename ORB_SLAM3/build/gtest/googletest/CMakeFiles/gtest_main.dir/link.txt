@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -Wall   -O3 -O3 -DNDEBUG -march=native  -shared -Wl,-soname,libgtest_main.so -o ../lib/libgtest_main.so CMakeFiles/gtest_main.dir/src/gtest_main.cc.o  -Wl,-rpath,/home/aazam/dev/ORB_SLAM3/build/gtest/lib ../lib/libgtest.so -lpthread 
