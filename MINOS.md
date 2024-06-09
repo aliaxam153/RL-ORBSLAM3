@@ -55,6 +55,7 @@ This command might take upto to a hour to complete. Be patience if it feels like
 ```
 npm install node-gyp@3.8.0 bufferutil@4.0.1 utf-8-validate@5.0.2
 ```
+> Warning: Do not run the "npm audit fix" command, it will mess up the installed dependencies.
 
 ## Install Python Requirements:
 First, we will install socketIO-client-2
@@ -83,11 +84,18 @@ sudo apt install libsdl2-dev
 pip3 install -e . -r requirements.txt
 ```
 ## Download Matterport3D Dataset
+Request and download the [Matterport3D](https://niessner.github.io/Matterport/) datasets. Please indicate "use with MINOS simulator" in your request email. 
+To download the Matterport3D data, use the invocation as follow with the provided download script.
+```
+download_mp.py --task_data minos -o .
+```
+This will download a 5.1GB zip archive which expands to approximately 6.3GB.
+
+After download, extract the mp3d_minos.zip file to $HOME/work/ directory.
 ```
 sudo apt install unzip
 unzip /PATH/to/mp3d_minos.zip -d $HOME/work/
 ```
-Extract the mp3d_minos.zip file to $HOME/work/ directory
 ### Test MINOS by running matterport3d dataset
 ```
 python3 -m minos.tools.pygame_client --dataset mp3d --scene_ids 17DRP5sb8fy --env_config pointgoal_mp3d_s
