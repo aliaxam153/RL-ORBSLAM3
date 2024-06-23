@@ -2,7 +2,7 @@
 
 # Incorporation of Reinforcement Learning Algorithm on ORB_SLAM3 for Enhanced Goal-Directed Navigation in Complex Indoor Environment.
 
-# The Repo is being modified at this moment, so it is recommended to avoid implementation !!!
+** [ The Repo is being modified at this moment, so it is recommended to avoid implementation!!! ]**
 
 > ### Disclaimer:
 >
