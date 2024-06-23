@@ -2,14 +2,6 @@
 
 # Incorporation of Reinforcement Learning Algorithm on ORB_SLAM3 for Enhanced Goal-Directed Navigation in Complex Indoor Environment.
 
-The purpose of this project is to address tracking loss in ORB_SLAM3 caused by sudden shifts in the input camera feed. To tackle this issue, we employ a reinforcement learning (RL) algorithm that uses features from ORB_SLAM3 and image frames from the camera to determine the best course of action, minimizing the possibility of track loss. 
-
-To achieve this, we have integrated an RL algorithm with ORB_SLAM3 to enhance goal-directed navigation in complex indoor environments. This process involves several key steps:
-
-1. **Ensure Effective Interaction**: Ensure that the RL algorithm can effectively interact with the ORB_SLAM3 algorithm.
-2. **Utilize MINOS Simulator**: Use the MINOS simulator to provide realistic indoor data for training and testing the RL model.
-
-
 > ### Disclaimer:
 >
 > The code and materials provided in this repository are not owned by me. They are sourced from various external contributors, publicly available resources, or other repositories. All credit for the original
@@ -24,8 +16,14 @@ To achieve this, we have integrated an RL algorithm with ORB_SLAM3 to enhance go
 >
 > DQNorb: https://github.com/knaveed20/Deep-Introspective-SLAM/
 
+The purpose of this project is to address tracking loss in ORB_SLAM3 caused by sudden shifts in the input camera feed. To tackle this issue, we employ a reinforcement learning (RL) algorithm that uses features from ORB_SLAM3 and image frames from the camera to determine the best course of action, minimizing the possibility of track loss. 
 
-## 1) Pre-requisites:
+To achieve this, we have integrated an RL algorithm with ORB_SLAM3 to enhance goal-directed navigation in complex indoor environments. This process involves several key steps:
+
+ 1. **Ensure Effective Interaction**: Ensure that the RL algorithm can effectively interact with the ORB_SLAM3 algorithm.
+ 2. **Utilize MINOS Simulator**: Use the MINOS simulator to provide realistic indoor data for training and testing the RL model.
+
+## Pre-requisites:
 Before using the DQNorb.py script to apply reinforcement learning (RL) decision-based actions on ORB_SLAM3, you need to install ORB-SLAM3 and the MINOS simulator with ROS Noetic on either WSL-Ubuntu or Ubuntu. 
 > #### Note: This setup has been tested on the Ubuntu 20.04 distribution.
 
@@ -36,7 +34,7 @@ Before using the DQNorb.py script to apply reinforcement learning (RL) decision-
 > For installation procedure, refer to this link:
 > https://github.com/aliaxam153/MINOS-Simulator.git
 
-## 2) Integration of MINOS with ORB-SLAM3
+##  Integration of MINOS with ORB-SLAM3
 ### Changes in MINOS Code:
 ```
 cd ~/dev/minos/minos/lib
