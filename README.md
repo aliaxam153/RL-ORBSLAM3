@@ -7,7 +7,7 @@
 > work goes to the respective authors and contributors. I do not claim any ownership or rights over the code and materials within this repository.
 > If you are the rightful owner of any content and wish to have it removed or properly attributed, please contact me, and I will address your concerns promptly.
 
-> ### External Sources:
+> ### Original Sources:
 > 
 > MINOS: https://github.com/minosworld/minos/
 >
@@ -16,38 +16,18 @@
 > DQNorb: https://github.com/knaveed20/Deep-Introspective-SLAM/
 
 
-Installation of ORB-SLAM3 and MINOS simulator with ROS Noetic using Windows Subsystem for Linux (WSL). This has been tested for Ubuntu 20.04 Distro.
+## 1) Pre-requisites Repositories:
+Before using the DQNorb.py script to apply reinforcement learning (RL) decision-based actions on ORB_SLAM3, which is fed with realistic indoor image frames by the MINOS simulator, you need to install ORB-SLAM3 and the MINOS simulator with ROS Noetic on Windows Subsystem for Linux (WSL). 
+> #### Note: This setup has been tested on the Ubuntu 20.04 distribution.
 
-## Install and setup WSL2 in Windows Machine:
-Here are the steps to install a specific Ubuntu distribution on WSL2 from the Microsoft Store:
-- **Enable WSL2:** Before you install any Linux distribution, make sure you have WSL2 enabled on your Windows machine. You can do this by following the instructions in the official Microsoft documentation ([WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)).
-- **Open Microsoft Store:** Go to the Microsoft Store on your Windows machine.
-- **Search for Ubuntu:** In the search bar at the top right corner of the Microsoft Store, type "Ubuntu" and press Enter.
-- **Select Ubuntu Distro:** You will see various versions of Ubuntu available. Choose the specific version you want to install. For example, if you want Ubuntu 20.04 LTS, select that version.
-- **Install:** Click on the Ubuntu distribution you've selected, then click on the "Get" or "Install" button to begin the installation process.
-- **Launch Ubuntu:** Once the installation is complete, you can launch the Ubuntu distribution from the Start menu or by typing "Ubuntu" in the Windows search bar and selecting it from the results.
-- **Set up Ubuntu:** The first time you launch the Ubuntu distribution, it will take a few moments to set up. Follow the on-screen instructions to set up your username and password.
-- **Update Packages (Recommended):** It's a good practice to update the package lists and upgrade installed packages using the following commands:
-  ```
-  sudo apt-get update && sudo apt-get upgrade
-  ```
-  After completion of ubuntu update, reboot it.
-  ```
-  sudo reboot
-  ```
-Tool for editing scripts:
-```
-sudo apt install gedit
-
-```
-## Installation of ORB-SLAM3:
+> ### Installation Guide for ORB-SLAM3:
 > For installation procedure & ROS setup of ORB-SLAM3 refer to this link: https://github.com/aliaxam153/ORBSLAM3-WSL.git
 
-## Installation of MINOS:
+> ### Installation Guide for MINOS:
 > For installation procedure, refer to this link:
 > https://github.com/aliaxam153/MINOS-Simulator.git
 
-## Integration of MINOS with ORB-SLAM3
+## 2) Integration of MINOS with ORB-SLAM3
 ### Changes in MINOS Code:
 ```
 cd ~/dev/minos/minos/lib
