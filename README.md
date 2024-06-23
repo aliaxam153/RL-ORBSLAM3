@@ -44,7 +44,8 @@ sudo apt install gedit
 > For installation procedure & ROS setup of ORB-SLAM3 refer to this link: https://github.com/aliaxam153/ORBSLAM3-WSL.git
 
 ## Installation of MINOS:
-> For installation procedure, refer to this link: https://github.com/aliaxam153/MINOS-Simulator/tree/main
+> For installation procedure, refer to this link:
+> https://github.com/aliaxam153/MINOS-Simulator.git
 
 ## Integration of MINOS with ORB-SLAM3
 ### Changes in MINOS Code:
