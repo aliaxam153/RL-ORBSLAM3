@@ -25,8 +25,8 @@ To achieve this, we have integrated an RL algorithm with ORB_SLAM3 to enhance go
 > DQNorb: https://github.com/knaveed20/Deep-Introspective-SLAM/
 
 
-## 1) Pre-requisites Repositories:
-Before using the DQNorb.py script to apply reinforcement learning (RL) decision-based actions on ORB_SLAM3, which is fed with realistic indoor image frames by the MINOS simulator, you need to install ORB-SLAM3 and the MINOS simulator with ROS Noetic on Windows Subsystem for Linux (WSL). 
+## 1) Pre-requisites:
+Before using the DQNorb.py script to apply reinforcement learning (RL) decision-based actions on ORB_SLAM3, you need to install ORB-SLAM3 and the MINOS simulator with ROS Noetic on either WSL-Ubuntu or Ubuntu. 
 > #### Note: This setup has been tested on the Ubuntu 20.04 distribution.
 
 > ### Installation Guide for ORB-SLAM3:
