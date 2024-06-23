@@ -30,10 +30,13 @@ Before using the DQNorb.py script to apply reinforcement learning (RL) decision-
 > #### Note: This setup has been tested on the Ubuntu 20.04 distribution.
 
 > ### Installation Guide for ORB-SLAM3:
-> For installation procedure & ROS setup of ORB-SLAM3 refer to this link: https://github.com/aliaxam153/ORBSLAM3-WSL.git
+> For installation procedure & ROS setup of ORB-SLAM3 refer to this link:
+>
+> https://github.com/aliaxam153/ORBSLAM3-WSL.git
 
 > ### Installation Guide for MINOS:
 > For installation procedure, refer to this link:
+>
 > https://github.com/aliaxam153/MINOS-Simulator.git
 
 ##  Integration of MINOS with ORB-SLAM3
