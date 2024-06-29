@@ -1,6 +1,6 @@
 ![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/36985e28-ca95-4dbd-9fdd-ffb67b606691)
 
-## Integration of MINOS with ORB-SLAM3
+# Integration of MINOS with ORB-SLAM3
 
 At this stage, it is assumed that ORB_SLAM3 and MINOS are installed and operational. Below is a flow diagram detailing their integration:
 
@@ -8,7 +8,7 @@ At this stage, it is assumed that ORB_SLAM3 and MINOS are installed and operatio
 
 Follow the steps shown below to achieve this:
 
-### Step 1) Frame Storage
+## Step 1) Frame Storage
 The MINOS simulator generates realistic indoor frames. These image frames are saved to the "frames" folder in the "/home/username/" directory by modifying the `Simulator.py` script.
 
 >**Note:**
@@ -44,27 +44,19 @@ The MINOS simulator generates realistic indoor frames. These image frames are sa
 >     rgb_img.save("/home/user_name/frames/color_.jpg")
 > ```
 and save these changes.
-### Step 2) Publish Frames:
+## Step 2) Publish Frames:
 
 merger.cpp ROS package reads frames from "Frames" folder.
 Publishes frames to "/camera/image_raw/image_topics" ROS topic.
-Step 3: Subscribe Frames:
-
-ORB-SLAM3 ROS node subscribes to "/camera/image_raw" topic.
-Receives continuous stream of image data from MINOS simulator.
-End:
-
-ORB-SLAM3 processes the received frames for SLAM (Simultaneous Localization and Mapping) tasks.
-
 
 ### Create ROS Package that Publishes the MINOS Image Frame to a ROS Topic:
-```
+```bash
 cd ~/catkin_ws/src
 catkin_create_pkg merger std_msgs rospy roscpp std_msgs image_transport cv_bridge
 ```
 Paste the merger.cpp file in the ```/Data``` inside the repo to ```~/catkin_ws/src/merger```
 Open the merger folder and make some edits.
-```
+```bash
 cd ~/catkin_ws/src/merger
 gedit merger.cpp
 ```
@@ -73,7 +65,7 @@ Replace the user_name with your PC name in line 18. And save the file.
 ss<<"/home/user_name/frames/color_.jpg";
 ```
 Edit the CMakeList.txt in the merger folder ```gedit CMakeList.txt``` and replace it with this: 
-```
+```cpp
 cmake_minimum_required(VERSION 3.0.2)
 project(merger)
 
@@ -114,7 +106,14 @@ After making these changes, run ```cd ~/catkin_ws/``` and then ```catkin_make```
 
 ![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/3c7529a6-cc14-46bb-a538-d305e5365578)
 
-This will make the ROS publisher script and it will publish the ```color_.jpg``` onto a ROS topic. The ORB-SLAM3 will link to this topic.
+This will make the ROS publisher script and it will publish the ```color_.jpg``` onto a ROS topic.
+
+## Step 3) Subscribe Frames:
+
+ORB-SLAM3 ROS node subscribes to "/camera/image_raw" topic.
+Receives continuous stream of image data from MINOS simulator.
+
+The ORB-SLAM3 will link to this topic.
 
 > Camera Parameters for MINOS Environment:
 > The camera caliberation file in already added in the repo by the name ```Minos.yaml``` in ```/ORB_SLAM3/Examples/ROS/ORB_SLAM3/```.
