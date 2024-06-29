@@ -129,11 +129,9 @@ This will make the ROS publisher script and it will publish the ```color_.jpg```
 ## Step 3) Subscribe Frames:
 
 ORB-SLAM3 ROS node subscribes to "/camera/image_raw" topic and receives continuous stream of image frames from MINOS simulator via publisher.
-
-The ORB-SLAM3 will link to this topic.
-
+> **Note:** The ORB-SLAM3 repo is already modified with subscriber, so you need to run ORB_SLAM3.
 > Camera Parameters for MINOS Environment:
-> The camera caliberation file in already added in the repo by the name ```Minos.yaml``` in ```/ORB_SLAM3/Examples/ROS/ORB_SLAM3/```.
+> The camera caliberation file is already added in the ORB_SLAM3 repo by the name ```Minos.yaml``` in ```/ORB_SLAM3/Examples/ROS/ORB_SLAM3/```.
 
 ### Test Run:
 ![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/3c7529a6-cc14-46bb-a538-d305e5365578)
