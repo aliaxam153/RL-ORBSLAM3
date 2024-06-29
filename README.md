@@ -42,7 +42,7 @@ Before using the DQNorb.py script to apply reinforcement learning (RL) decision-
 > ### Clone the repository:
 > ```
 > cd ~/dev
-> git clone
+> git clone https://github.com/aliaxam153/RL-ORBSLAM3.git
 > ```
 
 ## Integration of MINOS with ORB-SLAM3
