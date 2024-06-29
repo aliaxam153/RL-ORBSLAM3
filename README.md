@@ -1,6 +1,3 @@
-# Incorporation of Reinforcement Learning Algorithm on ORB_SLAM3 for Enhanced Goal-Directed Navigation in Complex Indoor Environment.
-### Warning:
-**Important Notice**: The Repo is being modified at this moment, so you will see inconsistency in sections with this mark ⚠️!!!
 
 > ### Disclaimer:
 >
@@ -16,6 +13,10 @@
 >
 > DQNorb: https://github.com/knaveed20/Deep-Introspective-SLAM/
 
+### Warning:
+The Repo is being modified at this moment, so you will see inconsistency in sections with this mark ⚠️!!!
+
+# Incorporation of Reinforcement Learning Algorithm on ORB_SLAM3 for Enhanced Goal-Directed Navigation in Complex Indoor Environment.
 The purpose of this project is to address tracking loss in ORB_SLAM3 caused by sudden shifts in the input camera feed. To tackle this issue, we employ a reinforcement learning (RL) algorithm that uses features from ORB_SLAM3 and image frames from the camera to determine the best course of action, minimizing the possibility of track loss. 
 
 To achieve this, we have integrated an RL algorithm with ORB_SLAM3 to enhance goal-directed navigation in complex indoor environments. This process involves several key steps:
