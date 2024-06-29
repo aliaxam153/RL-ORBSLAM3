@@ -52,29 +52,34 @@ The ROS package "merger.cpp" reads frames from "Frames" folder and publishes the
 > First change to the source space directory of the catkin workspace you created in the Creating a Workspace for catkin tutorial:
 > ```bash
 > cd ~/catkin_ws/src
-> catkin_create_pkg merger std_msgs rospy roscpp std_msgs image_transport cv_bridge
 > ```
 > Now use the catkin_create_pkg script to create a new package called ```merger```, which depends on std_msgs, rospy, roscpp, std_msgs, image_transport and cv_bridge:
-> ```bash
+> ```cpp
 > catkin_create_pkg merger std_msgs rospy roscpp std_msgs image_transport cv_bridge
 > ```
 > This will create a ```merger``` folder which contains a package.xml and a CMakeLists.txt, which have been partially filled out with the information you gave catkin_create_pkg.
 
 > #### b) Modify the Catkin ROS Package:
-> Paste the merger.cpp file in the ```/Data``` inside the repo to ```~/catkin_ws/src/merger```
+> Paste the merger.cpp file in the ```~/dev/RL-ORBSLAM3/``` in the repo to ```~/catkin_ws/src/merger```
 > ```bash
 >cp ~/dev/RL-ORBSLAM3/merger.cpp ~/catkin_ws/src/merger/
 >```
-> Open the merger folder and make some edits.
+> Open the merger folder and make some edits to the ```merger.cpp``` script.
 > ```bash
 > cd ~/catkin_ws/src/merger
 > gedit merger.cpp
 > ```
-> Replace the user_name with your PC name in line 18. And save the file.
+> At line 16 of the script, replace the ```PC_name``` with your ```user_name```.
+> ```cpp
+> std::string image_name = "/home/PC_name/frames/color_.jpg";
 > ```
-> ss<<"/home/user_name/frames/color_.jpg";
+> and then save the file.
+> 
+> Open and edit the CMakeList.txt in the merger folder
 > ```
-> Edit the CMakeList.txt in the merger folder ```gedit CMakeList.txt``` and replace it with this: 
+> gedit CMakeList.txt
+> ```
+> and replace the whole script with these lines: 
 > ```cpp
 > cmake_minimum_required(VERSION 3.0.2)
 > project(merger)
@@ -94,34 +99,36 @@ The ROS package "merger.cpp" reads frames from "Frames" folder and publishes the
 > find_package(OpenCV REQUIRED)
 > 
 > catkin_package()
-> 
 > ## System dependencies are found with CMake's conventions
 > include_directories(
 >   ${catkin_INCLUDE_DIRS}
 >   ${OpenCV_INCLUDE_DIRS}
 > )
-> 
 > ## Declare a C++ executable
 > add_executable(merger merger.cpp)
-> 
-> 
+>
 > ## Specify libraries to link a library or executable target against
 > target_link_libraries(merger
 >   ${catkin_LIBRARIES}
 >   ${OpenCV_LIBRARIES}  # Add this line if not already present
 > )
 > ```
-> After making these changes, run ```cd ~/catkin_ws/``` and then ```catkin_make```.
+> and then save the file.
 
-
-![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/3c7529a6-cc14-46bb-a538-d305e5365578)
-
-This will make the ROS publisher script and it will publish the ```color_.jpg``` onto a ROS topic.
+> #### c) Compile the Catkin ROS Package:
+> After making the changesabove, navigate to catkin workspace:
+> ```
+> cd ~/catkin_ws/
+> ```
+> and then compile the package:
+> ```
+> catkin_make
+> ```
+This will make the ROS publisher script and it will publish the ```color_.jpg``` in the 'frames' folder onto a ROS topic.
 
 ## Step 3) Subscribe Frames:
 
-ORB-SLAM3 ROS node subscribes to "/camera/image_raw" topic.
-Receives continuous stream of image data from MINOS simulator.
+ORB-SLAM3 ROS node subscribes to "/camera/image_raw" topic and receives continuous stream of image frames from MINOS simulator via publisher.
 
 The ORB-SLAM3 will link to this topic.
 
@@ -129,6 +136,7 @@ The ORB-SLAM3 will link to this topic.
 > The camera caliberation file in already added in the repo by the name ```Minos.yaml``` in ```/ORB_SLAM3/Examples/ROS/ORB_SLAM3/```.
 
 ### Test Run:
+![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/3c7529a6-cc14-46bb-a538-d305e5365578)
 Create bash file to run all commands simultaneously (make adjustments accordingly):
 
 ```
