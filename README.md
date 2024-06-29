@@ -39,6 +39,12 @@ Before using the DQNorb.py script to apply reinforcement learning (RL) decision-
 >
 > https://github.com/aliaxam153/MINOS-Simulator.git
 
+> ### Clone the repository:
+> ```
+> cd ~/dev
+> git clone
+> ```
+
 ## Integration of MINOS with ORB-SLAM3
 
 At this stage, it is assumed that ORB_SLAM3 and MINOS are installed and operational. Follow this link for integration: 
