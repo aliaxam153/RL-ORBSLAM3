@@ -117,11 +117,11 @@ The ROS package "merger.cpp" reads frames from "Frames" folder and publishes the
 
 > #### c) Compile the Catkin ROS Package:
 > After making the changesabove, navigate to catkin workspace:
-> ```
+> ```bash
 > cd ~/catkin_ws/
 > ```
 > and then compile the package:
-> ```
+> ```bash
 > catkin_make
 > ```
 This will make the ROS publisher script and it will publish the ```color_.jpg``` in the 'frames' folder onto a ROS topic.
@@ -129,39 +129,54 @@ This will make the ROS publisher script and it will publish the ```color_.jpg```
 ## Step 3) Subscribe Frames:
 
 ORB-SLAM3 ROS node subscribes to "/camera/image_raw" topic and receives continuous stream of image frames from MINOS simulator via publisher.
-> **Note:** The ORB-SLAM3 repo is already modified with subscriber, so you need to run ORB_SLAM3.
-> Camera Parameters for MINOS Environment:
+> **Note:**
+> 
+> **ROS Subscriber Script:**
+> 
+> The ```ros_mono.cc```, is the script in ORB-SLAM3 repo ```/ORB_SLAM3/Examples/ROS/ORB_SLAM3/src/``` that is already modified with subscriber, so you need to run ORB_SLAM3.
+> 
+> **Camera Parameters for MINOS Environment:**
+> 
 > The camera caliberation file is already added in the ORB_SLAM3 repo by the name ```Minos.yaml``` in ```/ORB_SLAM3/Examples/ROS/ORB_SLAM3/```.
 
-### Test Run:
+## Step 4) Test Run to Validate Integration:
+Open 5 separate CLI terminals in your Ubuntu PC, and run the following commands for each specified terminals:
+
+> **Terminal 1)** Run ROSCORE to start ROS:
+> ```bash
+> roscore
+> ```
+> **Terminal 2)** Empty the frames folder and run MINOS:
+> ```bash
+> rm -ff ~/frames/*
+> clear
+> ```
+> ```bash
+> cd ~/dev/minos
+> python3 -m minos.tools.pygame_client --dataset mp3d --scene_ids JeFG25nYj2p --env_config pointgoal_mp3d_s --save_png --width 600 --height 400 --agent_config agent_gridworld -s map --navmap
+> ```
+> **Terminal 3)** Run ORB_SLAM3 ROS_Subscriber:
+> ```bash
+> rosrun ORB_SLAM3 Mono ~/dev/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/dev/ORB_SLAM3/Examples/ROS/ORB_SLAM3/Minos.yaml
+> ```
+> **Terminal 4)** Run MINOS ROS_Publisher:
+> ```bash
+> rosrun merger merger
+> ```
+> **Terminal 5)** Using rqt_graph for Visual Representation:
+> rqt_graph provides a graphical representation of the ROS computation graph (nodes and topics).
+> 
+> First, make sure rqt and rqt_graph are installed:
+> 
+> ```bash
+> sudo apt-get install ros-noetic-rqt
+> sudo apt-get install ros-noetic-rqt-graph
+> ```
+> Run the command on terminal to see graph:
+> ```bash
+> rqt_graph
+> ```
+You should get a graph as follows:
+
 ![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/3c7529a6-cc14-46bb-a538-d305e5365578)
-Create bash file to run all commands simultaneously (make adjustments accordingly):
 
-```
-#!/bin/bash
-cat /dev/null > abc.txt
-cat /dev/null > abc2.txt
-rm -ff /home/user_name/frames/*
-clear
-echo "Deleting Images"
-rm -ff /home/user_name/frames/*
-echo "deleted Images"
-
-echo "Starting ROSCORE"
-roscore &
-sleep 2
-echo "Started ROSCORE"
-
-#Following command runs MINOS
-cd /home/user_name/dev/minos
-python3 -m minos.tools.pygame_client --dataset mp3d --scene_ids JeFG25nYj2p --env_config pointgoal_mp3d_s --save_png --width 600 --height 400 --agent_config agent_gridworld -s map --navmap &
-cd /home/user_name/ORB_SLAM3
-
-#Following command runs ORB_SLAM after a 10 second delay
-sleep 5
-export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/home/user_name
-#LAUNCH ORBSLAM3
-rosrun ORB_SLAM3 Mono ~/dev/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/dev/ORB_SLAM3/Examples/ROS/ORB_SLAM3/Minos.yaml &
-sleep 5
-rosrun merger merger
-```
