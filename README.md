@@ -39,33 +39,62 @@ Before using the DQNorb.py script to apply reinforcement learning (RL) decision-
 >
 > https://github.com/aliaxam153/MINOS-Simulator.git
 
-##  Integration of MINOS with ORB-SLAM3
-### Changes in MINOS Code:
-```
-cd ~/dev/minos/minos/lib
-gedit Simulator.py
-```
-Once the script is opened, do the following changes:
-Replace 98-102 with this:
-```
-if 'logdir' in params:
-            self._logdir = '/home/user_name/frames' 
-        else:
-            self._logdir = '/home/user_name/frames'
-```
-> Replace user_name with your PC name.
+## Integration of MINOS with ORB-SLAM3
 
-& replace line 422-428 with:
+At this stage, it is assumed that ORB_SLAM3 and MINOS are installed and operational. Below is a flow diagram detailing their integration:
 
-```
-if self.params.get(‘save_png’):
-if image is None:
-image = Image.frombytes(mode,(data.shape[0], data.shape[1]),data)
-time.sleep(0.06)
-rgb_img = image.convert('RGB')
-rgb_img.save("/home/user_name/frames/color_.jpg")
-```
-and save the changes.
+![board-whimsical-farceur (1)](https://github.com/aliaxam153/RL-ORBSLAM3/assets/146977640/c39ae34e-c5f3-4cfd-b58c-e3da0fce1a26)
+
+Follow the steps shown below to achieve this:
+
+### Step 1) Frame Storage
+The MINOS simulator generates realistic indoor frames. These image frames are saved to the "frames" folder in the "/home/username/" directory by modifying the `Simulator.py` script.
+
+>**Note:**
+>
+>Replace `user_name` in  ``` self._logdir = '/home/user_name/frames' ``` and  ```rgb_img.save("/home/user_name/frames/color_.jpg") ``` with your username, e.g.'/home/aazam/frames'.
+>
+>Be sure to do this; otherwise, the MINOS Simulator will start giving errors when you run it.
+
+**a) Navigate to the MINOS directory and open the `Simulator.py` script:**
+> ```bash
+> mkdir -p ~/frames
+> cd ~/dev/minos/minos/lib
+> gedit Simulator.py
+> ```
+
+**b) Once the `Simulator.py` script is opened, make the following changes:**
+
+> **i) Go to lines 98-102 in the script and make these changes:**
+> ```python
+> if 'logdir' in params:
+>     self._logdir = '/home/user_name/frames' 
+> else:
+>     self._logdir = '/home/user_name/frames'
+> ```
+> 
+> **ii) Also, visit lines 422-428 in the script and replace them with these lines:**
+> ```python
+> if self.params.get('save_png'):
+>     if image is None:
+>         image = Image.frombytes(mode, (data.shape[0], data.shape[1]), data)
+>     time.sleep(0.06)
+>     rgb_img = image.convert('RGB')
+>     rgb_img.save("/home/user_name/frames/color_.jpg")
+> ```
+and save these changes.
+### Step 2) Publish Frames:
+
+merger.cpp ROS package reads frames from "Frames" folder.
+Publishes frames to "/camera/image_raw/image_topics" ROS topic.
+Step 3: Subscribe Frames:
+
+ORB-SLAM3 ROS node subscribes to "/camera/image_raw" topic.
+Receives continuous stream of image data from MINOS simulator.
+End:
+
+ORB-SLAM3 processes the received frames for SLAM (Simultaneous Localization and Mapping) tasks.
+
 
 ### Create ROS Package that Publishes the MINOS Image Frame to a ROS Topic:
 ```
