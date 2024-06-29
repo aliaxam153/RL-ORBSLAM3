@@ -8,7 +8,7 @@ At this stage, it is assumed that ORB_SLAM3 and MINOS are installed and operatio
 
 Follow the steps shown below to achieve this:
 
-## Step 1) Frame Storage
+## Step 1) Export frames from MINOS Simulator:
 The MINOS simulator generates realistic indoor frames. These image frames are saved to the "frames" folder in the "/home/username/" directory by modifying the `Simulator.py` script.
 
 >**Note:**
@@ -46,62 +46,72 @@ The MINOS simulator generates realistic indoor frames. These image frames are sa
 and save these changes.
 ## Step 2) Publish Frames:
 
-merger.cpp ROS package reads frames from "Frames" folder.
-Publishes frames to "/camera/image_raw/image_topics" ROS topic.
+The ROS package "merger.cpp" reads frames from "Frames" folder and publishes them to "/camera/image_raw/image_topics" ROS topic.
 
-### Create ROS Package that Publishes the MINOS Image Frame to a ROS Topic:
-```bash
-cd ~/catkin_ws/src
-catkin_create_pkg merger std_msgs rospy roscpp std_msgs image_transport cv_bridge
-```
-Paste the merger.cpp file in the ```/Data``` inside the repo to ```~/catkin_ws/src/merger```
-Open the merger folder and make some edits.
-```bash
-cd ~/catkin_ws/src/merger
-gedit merger.cpp
-```
-Replace the user_name with your PC name in line 18. And save the file.
-```
-ss<<"/home/user_name/frames/color_.jpg";
-```
-Edit the CMakeList.txt in the merger folder ```gedit CMakeList.txt``` and replace it with this: 
-```cpp
-cmake_minimum_required(VERSION 3.0.2)
-project(merger)
+> #### a) Create Catkin ROS Package:
+> First change to the source space directory of the catkin workspace you created in the Creating a Workspace for catkin tutorial:
+> ```bash
+> cd ~/catkin_ws/src
+> catkin_create_pkg merger std_msgs rospy roscpp std_msgs image_transport cv_bridge
+> ```
+> Now use the catkin_create_pkg script to create a new package called ```merger```, which depends on std_msgs, rospy, roscpp, std_msgs, image_transport and cv_bridge:
+> ```bash
+> catkin_create_pkg merger std_msgs rospy roscpp std_msgs image_transport cv_bridge
+> ```
+> This will create a ```merger``` folder which contains a package.xml and a CMakeLists.txt, which have been partially filled out with the information you gave catkin_create_pkg.
 
-## Compile as C++11, supported in ROS Noetic
-add_compile_options(-std=c++11)
-
-## Find catkin macros and libraries
-find_package(catkin REQUIRED COMPONENTS
-  cv_bridge
-  image_transport
-  roscpp
-  rospy
-  std_msgs
-)
-
-find_package(OpenCV REQUIRED)
-
-catkin_package()
-
-## System dependencies are found with CMake's conventions
-include_directories(
-  ${catkin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-)
-
-## Declare a C++ executable
-add_executable(merger merger.cpp)
-
-
-## Specify libraries to link a library or executable target against
-target_link_libraries(merger
-  ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES}  # Add this line if not already present
-)
-```
-After making these changes, run ```cd ~/catkin_ws/``` and then ```catkin_make```.
+> #### b) Modify the Catkin ROS Package:
+> Paste the merger.cpp file in the ```/Data``` inside the repo to ```~/catkin_ws/src/merger```
+> ```bash
+>cp ~/dev/RL-ORBSLAM3/merger.cpp ~/catkin_ws/src/merger/
+>```
+> Open the merger folder and make some edits.
+> ```bash
+> cd ~/catkin_ws/src/merger
+> gedit merger.cpp
+> ```
+> Replace the user_name with your PC name in line 18. And save the file.
+> ```
+> ss<<"/home/user_name/frames/color_.jpg";
+> ```
+> Edit the CMakeList.txt in the merger folder ```gedit CMakeList.txt``` and replace it with this: 
+> ```cpp
+> cmake_minimum_required(VERSION 3.0.2)
+> project(merger)
+> 
+> ## Compile as C++11, supported in ROS Noetic
+> add_compile_options(-std=c++11)
+> 
+> ## Find catkin macros and libraries
+> find_package(catkin REQUIRED COMPONENTS
+>   cv_bridge
+>   image_transport
+>   roscpp
+>   rospy
+>   std_msgs
+> )
+> 
+> find_package(OpenCV REQUIRED)
+> 
+> catkin_package()
+> 
+> ## System dependencies are found with CMake's conventions
+> include_directories(
+>   ${catkin_INCLUDE_DIRS}
+>   ${OpenCV_INCLUDE_DIRS}
+> )
+> 
+> ## Declare a C++ executable
+> add_executable(merger merger.cpp)
+> 
+> 
+> ## Specify libraries to link a library or executable target against
+> target_link_libraries(merger
+>   ${catkin_LIBRARIES}
+>   ${OpenCV_LIBRARIES}  # Add this line if not already present
+> )
+> ```
+> After making these changes, run ```cd ~/catkin_ws/``` and then ```catkin_make```.
 
 
 ![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/3c7529a6-cc14-46bb-a538-d305e5365578)
