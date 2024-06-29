@@ -50,7 +50,7 @@ At this stage, it is assumed that ORB_SLAM3 and MINOS are installed and operatio
 https://github.com/aliaxam153/RL-ORBSLAM3/blob/main/Integrate_MINOS_ORBSLAM3.md
 
 
-## DQNorb.py Integration with ORB-SLAM3
+## ⚠️ DQNorb.py Integration with ORB-SLAM3 (Being updated)
 
 In the folder  ```/Data/DQNorb```, the file DQNorb.py is the executeable that links with the ORB-SLAM3 ROS publisher and subscriber. The ```agent.pt``` is the pre-trained DQN model, which is trained on
 MINOS simulator. Following rqt_graph shows the ROS network:
