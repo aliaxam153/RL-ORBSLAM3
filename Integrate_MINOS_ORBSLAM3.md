@@ -116,3 +116,35 @@ This will make the ROS publisher script and it will publish the ```color_.jpg```
 
 > Camera Parameters for MINOS Environment:
 > The camera caliberation file in already added in the repo by the name ```Minos.yaml``` in ```/ORB_SLAM3/Examples/ROS/ORB_SLAM3/```.
+
+### Test Run:
+Create bash file to run all commands simultaneously (make adjustments accordingly):
+
+```
+#!/bin/bash
+cat /dev/null > abc.txt
+cat /dev/null > abc2.txt
+rm -ff /home/user_name/frames/*
+clear
+echo "Deleting Images"
+rm -ff /home/user_name/frames/*
+echo "deleted Images"
+
+echo "Starting ROSCORE"
+roscore &
+sleep 2
+echo "Started ROSCORE"
+
+#Following command runs MINOS
+cd /home/user_name/dev/minos
+python3 -m minos.tools.pygame_client --dataset mp3d --scene_ids JeFG25nYj2p --env_config pointgoal_mp3d_s --save_png --width 600 --height 400 --agent_config agent_gridworld -s map --navmap &
+cd /home/user_name/ORB_SLAM3
+
+#Following command runs ORB_SLAM after a 10 second delay
+sleep 5
+export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/home/user_name
+#LAUNCH ORBSLAM3
+rosrun ORB_SLAM3 Mono ~/dev/ORB_SLAM3/Vocabulary/ORBvoc.txt ~/dev/ORB_SLAM3/Examples/ROS/ORB_SLAM3/Minos.yaml &
+sleep 5
+rosrun merger merger
+```
