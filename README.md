@@ -1,5 +1,3 @@
-![image](https://github.com/aliaxam153/ORB-SLAM3-on-Ubuntu-20.04-WSL/assets/146977640/36985e28-ca95-4dbd-9fdd-ffb67b606691)
-
 # Incorporation of Reinforcement Learning Algorithm on ORB_SLAM3 for Enhanced Goal-Directed Navigation in Complex Indoor Environment.
 ### Warning:
 ⚠️ **Important Notice**: The Repo is being modified at this moment, so it is recommended to avoid implementation!!!
@@ -29,18 +27,18 @@ To achieve this, we have integrated an RL algorithm with ORB_SLAM3 to enhance go
 Before using the DQNorb.py script to apply reinforcement learning (RL) decision-based actions on ORB_SLAM3, you need to install ORB-SLAM3 and the MINOS simulator with ROS Noetic on either WSL-Ubuntu or Ubuntu. 
 > #### Note: This setup has been tested on the Ubuntu 20.04 distribution.
 
-> ### Installation Guide for ORB-SLAM3:
+> #### a) Installation Guide for ORB-SLAM3:
 > For installation procedure & ROS setup of ORB-SLAM3 refer to this link:
 >
 > https://github.com/aliaxam153/ORBSLAM3-WSL.git
 
-> ### Installation Guide for MINOS:
+> #### b) Installation Guide for MINOS:
 > For installation procedure, refer to this link:
 >
 > https://github.com/aliaxam153/MINOS-Simulator.git
 
-> ### Clone the repository:
-> ```
+> #### c) Clone the Git repository:
+> ```bash
 > cd ~/dev
 > git clone https://github.com/aliaxam153/RL-ORBSLAM3.git
 > ```
